@@ -1,0 +1,14 @@
+{
+  "name": "sighted",
+  "description": "Sighted を Claude で使うためのプラグイン",
+  "owner": {
+    "name": "tkbstore"
+  },
+  "plugins": [
+    {
+      "name": "sighted",
+      "source": "./plugins/sighted",
+      "description": "Sighted の分析と計測"
+    }
+  ]
+}

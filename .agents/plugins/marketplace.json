@@ -1,0 +1,19 @@
+{
+  "name": "sighted",
+  "interface": {
+    "displayName": "Sighted"
+  },
+  "plugins": [
+    {
+      "name": "sighted",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sighted-codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    }
+  ]
+}
