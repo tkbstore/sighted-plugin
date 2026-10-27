@@ -9,7 +9,7 @@ Sighted を AI エージェントから使うためのプラグインです。Cl
 | [`sighted`](plugins/sighted/)（Sighted） | claude.ai・Cowork・Claude Code | Sighted の MCP サーバーへの接続と、分析・計測の手順（skill） |
 | [`sighted`](plugins/sighted-codex/)（Codex 用） | Codex | 同じ MCP サーバーへの接続と、同じ分析・計測の手順。接続の手順（`sighted-setup`）だけ Codex 用 |
 
-どちらも接続先は同じ MCP サーバー `https://mcp.sighted-aeo.com/mcp` です。ステージング環境向けは `tkbstore/sighted-plugins` にあります（マーケットプレイスの名前が同じ `sighted` なので、Claude に両方を追加すると衝突することがあります）。
+どちらも接続先は同じ MCP サーバー `https://mcp.sighted-aeo.com/mcp` です。
 
 ## インストール
 
@@ -96,16 +96,25 @@ ChatGPT ではプラグインを使わず、[`chatgpt.com/plugins`](https://chat
 
 ## 開発する人へ
 
+- stg 用は tkbstore/sighted-plugins-stg にあります。
 - 構成:
   - `.claude-plugin/marketplace.json`（Claude のマーケットプレイス）と `plugins/sighted/`（`.claude-plugin/plugin.json`・`.mcp.json`・`skills/`）。
   - `.agents/plugins/marketplace.json`（Codex のマーケットプレイス。`source.path` はリポジトリの根から）と `plugins/sighted-codex/`（`plugin.json`・`mcp.json`・`skills/`）。
-  - `skills-src/`: skill の原稿。`sighted-analysis` は両方に共通、`sighted-setup` は `claude/`・`codex/` で別。
+  - `skills-src/`: skill の原稿。`sighted-analysis`・`sighted-aeo-context`・`sighted-aeo-measure`・`sighted-aeo-content-plan`・`sighted-deliverable-check` は両方に共通、`sighted-setup` は `claude/`・`codex/` で別。
   - `docs/chatgpt.md`: ChatGPT での追加手順。
 - skill は `skills-src/` の原稿を直し、次のコマンドで各プラグインへコピーして一緒に commit します（プラグインの中のコピーを直接直さない）。CI（`.github/workflows/check.yml`）が原稿と各コピーの一致を検査します。
 
   ```sh
   cp skills-src/sighted-analysis/SKILL.md plugins/sighted/skills/sighted-analysis/SKILL.md
   cp skills-src/sighted-analysis/SKILL.md plugins/sighted-codex/skills/sighted-analysis/SKILL.md
+  cp skills-src/sighted-aeo-context/SKILL.md plugins/sighted/skills/sighted-aeo-context/SKILL.md
+  cp skills-src/sighted-aeo-context/SKILL.md plugins/sighted-codex/skills/sighted-aeo-context/SKILL.md
+  cp skills-src/sighted-aeo-measure/SKILL.md plugins/sighted/skills/sighted-aeo-measure/SKILL.md
+  cp skills-src/sighted-aeo-measure/SKILL.md plugins/sighted-codex/skills/sighted-aeo-measure/SKILL.md
+  cp skills-src/sighted-aeo-content-plan/SKILL.md plugins/sighted/skills/sighted-aeo-content-plan/SKILL.md
+  cp skills-src/sighted-aeo-content-plan/SKILL.md plugins/sighted-codex/skills/sighted-aeo-content-plan/SKILL.md
+  cp skills-src/sighted-deliverable-check/SKILL.md plugins/sighted/skills/sighted-deliverable-check/SKILL.md
+  cp skills-src/sighted-deliverable-check/SKILL.md plugins/sighted-codex/skills/sighted-deliverable-check/SKILL.md
   cp skills-src/claude/sighted-setup/SKILL.md plugins/sighted/skills/sighted-setup/SKILL.md
   cp skills-src/codex/sighted-setup/SKILL.md plugins/sighted-codex/skills/sighted-setup/SKILL.md
   ```
