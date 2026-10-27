@@ -1,7 +1,7 @@
 {
   "name": "sighted",
   "displayName": "Sighted",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Sighted のデータを分析し、費用を確認して計測を実行します。",
   "author": {
     "name": "tkbstore"
