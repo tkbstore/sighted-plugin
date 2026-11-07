@@ -1,0 +1,4 @@
+[publish]
+intent = "public"
+# 公開の起点。release_gate の history レーンがここからの履歴を見る。
+released_at = "217a2aaf01c16c56e9e8a577c9941ee9117702ac"
